@@ -1,20 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
 
+/** コンテナ（バック）のデザイン */
 .container {
   position: absolute;
+  background: #272C34;
   top: 50%;
   left: 50%;
   width: 400px;
   height: 400px;
   margin-top: -200px;
   margin-left: -200px;
-  border-radius: 2px;
-  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   overflow: hidden;
-  background: #272C34;
   color: #333;
-  font-family: "Open Sans", Helvetica, sans-serif;
 }
+
+/** コンテナの中心の位置を決めておく */
 .container .center {
   position: absolute;
   top: 50%;
@@ -22,44 +23,58 @@
   transform: translate(-50%, -50%);
 }
 
-/** 暗闇のサークルを初期値として持っておく */
+/** サークルのポジション決め */
 .container .center .circle {
   position: relative;
   width: 180px;
   height: 180px;
-  background: #fff;
-  /* clip-path: circle(90px at 90px 90px); */
+  /** 要素のどの部分を表示するかを設定 circle(半径 at 中心点) */
+  clip-path: circle(90px at 90px 90px);
 }
 
-/*
+/** 空の動き */
 .container .center .circle .sky {
   width: 100%;
   height: 66%;
-  background: #7DDFFC;
+  background: #88cee4;
   z-index: 0;
-  animation: sky-turn-dark 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
+  /** 
+    アニメーション名
+    アニメーションが始まって終わるまでの時間
+    アニメーションの進行の度合い（キュービック-ベジエ曲線）
+    アニメーションが始まる時間
+    アニメーションの繰り返し回数
+    0.65, 0, 0.35, 1
+  */
+  animation: turn-dark-sky 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
 }
+
+/** 太陽の初期位置 */
 .container .center .circle .sun {
   position: absolute;
   top: 2%;
   left: 41%;
-  width: 18%;
-  height: 18%;
+  width: 20%;
+  height: 20%;  
   border-radius: 50%;
   z-index: 1;
+  /** 回転の中心(横(水平)方向の起点位置・縦(垂直)方向の起点位置)を指定 */
   transform-origin: 50% 400%;
-  animation: sun-move 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
+  animation: sun-moving 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
 }
+
 .container .center .circle .side-left {
   position: absolute;
   top: 36%;
   left: 18%;
   width: 45%;
   height: 30%;
+  /** 要素のどの部分を表示するかを設定 circle(半径 at 中心点) */
   clip-path: polygon(80% 0, 100% 100%, 0 100%);
   z-index: 1;
-  animation: pyramid-shading 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
+  animation: pyramid-shadow 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
 }
+
 .container .center .circle .side-right {
   position: absolute;
   top: 36%;
@@ -69,8 +84,9 @@
   background: #8D8D91;
   clip-path: polygon(0 0, 25% 100%, 100% 100%);
   z-index: 1;
-  animation: pyramid-shading 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite reverse;
+  animation: pyramid-shadow 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite reverse;
 }
+
 .container .center .circle .shadow {
   position: absolute;
   top: 66%;
@@ -82,6 +98,7 @@
   animation: ground-shadow 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite;
   transform-origin: 50% 0;
 }
+
 .container .center .circle .ground {
   position: absolute;
   width: 100%;
@@ -91,7 +108,23 @@
   z-index: 0;
   animation: fading-sand 4s cubic-bezier(0.4, 0, 0.49, 1) 0s infinite reverse;
 }
-@keyframes sun-move {
+
+/** アニメーション開始から終了するまでどのようなアニメーションをするのか指定 */
+@keyframes turn-dark-sky {
+  0% {
+    background: #272C34;
+  }
+  30% {
+    background: #88cee4;
+  }
+  70% {
+    background: #88cee4;
+  }
+  100% {
+    background: #272C34;
+  }
+}
+@keyframes sun-moving {
   0% {
     background: #F57209;
     transform: rotate(-70deg);
@@ -100,6 +133,7 @@
     background: #FFEF00;
     transform: rotate(-28deg);
   }
+  /** 太陽が一番高いところにくる */
   70% {
     background: #FFEF00;
   }
@@ -108,21 +142,7 @@
     transform: rotate(70deg);
   }
 }
-@keyframes sky-turn-dark {
-  0% {
-    background: #272C34;
-  }
-  30% {
-    background: #7DDFFC;
-  }
-  70% {
-    background: #7DDFFC;
-  }
-  100% {
-    background: #272C34;
-  }
-}
-@keyframes pyramid-shading {
+@keyframes pyramid-shadow {
   0% {
     background: #272C34;
   }
@@ -173,5 +193,4 @@
   100% {
     background: #272C34;
   }
-} */
-
+}
