@@ -1,0 +1,25 @@
+{
+  "name": "css-100days",
+  "version": "1.0.0",
+  "description": "CSS 100days challenging day by day",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takakimiyajima/css-100days.git"
+  },
+  "keywords": [
+    "css"
+  ],
+  "author": "takaki miyajima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/takakimiyajima/css-100days/issues"
+  },
+  "dependencies": {
+    "pug-cli": "^1.0.0-alpha6",
+    "pug-loader": "^2.4.0"
+  }
+}
