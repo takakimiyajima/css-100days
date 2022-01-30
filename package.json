@@ -4,14 +4,18 @@
   "description": "CSS 100days challenging day by day",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "run-p watch-*",
+    "watch-pug": "pug ./src -b ./src -o ./public -P -w",
+    "watch-sass": "node-sass ./src -o ./public -w",
+    "watch-copy-img": "cpx \"./src/**/*.{png,jpg,svg,gif}\" ./public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/takakimiyajima/css-100days.git"
   },
   "keywords": [
-    "css"
+    "sass",
+    "pug"
   ],
   "author": "takaki miyajima",
   "license": "ISC",
@@ -19,7 +23,13 @@
     "url": "https://github.com/takakimiyajima/css-100days/issues"
   },
   "dependencies": {
+    "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "pug-loader": "^2.4.0"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0"
   }
 }
